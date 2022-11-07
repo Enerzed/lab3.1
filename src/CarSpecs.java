@@ -3,18 +3,23 @@ import java.util.Scanner;
 
 public class CarSpecs
 {
+    private static int Count = 0;
+    private int id;
     private int speed;
 	private int weight;
 	private int power_of_engine;
     public CarSpecs()
     {
-
+        Count++;
+        this.id = Count;
     }
     public CarSpecs(int my_speed, int my_weight, int my_power_of_engine)
     {
         this.speed = my_speed;
         this.weight = my_weight;
         this.power_of_engine = my_power_of_engine;
+        Count++;
+        this.id = Count;
     }
     public int CompareCarSpecs(int operation, CarSpecs comparable_specs)
     {
@@ -53,6 +58,38 @@ public class CarSpecs
     }
     public void print_specs()
     {
-        System.out.printf("speed = %d, weight = %d, power of engine = %d\n", this.speed, this.weight, this.power_of_engine);
+        System.out.printf("id = %d, speed = %d, weight = %d, power of engine = %d\n",this.id, this.speed, this.weight, this.power_of_engine);
+    }
+    public static int GetCount()
+    {
+        return Count;
+    }
+    public int GetId()
+    {
+        return this.id;
+    }
+    public int GetSpeed()
+    {
+        return this.speed;
+    }
+    public int GetWeight()
+    {
+        return this.weight;
+    }
+    public int GetPowerOfEngine()
+    {
+        return this.power_of_engine;
+    }
+    public void SetSpeed(int my_speed)
+    {
+        this.speed = my_speed;
+    }
+    public void SetWeight(int my_weight)
+    {
+        this.weight = my_weight;
+    }
+    public void SetPowerOfEngine(int my_power_of_engine)
+    {
+        this.power_of_engine = my_power_of_engine;
     }
 }

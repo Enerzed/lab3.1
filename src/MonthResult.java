@@ -3,38 +3,33 @@ import java.util.Scanner;
 
 class MonthResult
 {
+    private static int Count = 0;
     private int id;
     private int income;
-    MonthResult()
+    public MonthResult()
     {
-
+        Count++;
+        this.id = Count;
     }
-    MonthResult(int my_id)
+    public MonthResult(int my_income)
     {
-        this.id = my_id;
-        this.income = 0;
+        this.income = my_income;
+        Count++;
+        this.id = Count;
     }
-    MonthResult(int my_id, int my_income)
-    {
-        id = my_id;
-        income = my_income;
-    }
-    void in_month_result()
+    public void in_month_result()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("input id:");
-        this.id = scanner.nextInt();
-        scanner.nextLine();
         System.out.println("input income:");
         this.income = scanner.nextInt();
         scanner.nextLine();
         scanner.close();
     }
-    void print_month_result()
+    public void print_month_result()
     {
         System.out.printf("id = %d\nincome = %d\n", this.id,this.income);
     }
-    int compare_month_results(int operation, MonthResult month_result2)
+    public int compare_month_results(int operation, MonthResult month_result2)
     {
         int flag = 0;
         if (operation == 0) {
@@ -43,5 +38,21 @@ class MonthResult
         }
         else flag = -1;
         return flag;
+    }
+    public static int GetCount()
+    {
+        return Count;
+    }
+    public int GetId()
+    {
+        return this.id;
+    }
+    public int GetIncome()
+    {
+        return this.income;
+    }
+    public void SetIncome(int my_income)
+    {
+        this.income = my_income;
     }
 }

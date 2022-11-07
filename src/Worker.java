@@ -2,6 +2,7 @@
 import java.util.Scanner;
 
 public class Worker {
+    private static int Count = 0;
     private int id;
     private String name;
     private String job;
@@ -32,18 +33,50 @@ public class Worker {
         scanner.nextLine();
         scanner.close();
     }
-        void print_worker()
-        {
-            System.out.printf("id = %d\nname = %s\njob = %s\nsalary = %d\n",id, name, job, salary);
+    public void print_worker()
+    {
+        System.out.printf("id = %d\nname = %s\njob = %s\nsalary = %d\n",id, name, job, salary);
+    }
+    public int compare_worker(int operation, Worker comparable_worker)
+    {
+        int flag = 0;
+        if (operation == 0) {
+            if (this.salary < comparable_worker.salary)
+                flag = 1;
         }
-        int compare_worker(int operation, Worker comparable_worker)
-        {
-            int flag = 0;
-            if (operation == 0) {
-                if (this.salary < comparable_worker.salary)
-                    flag = 1;
-            }
-            else flag = -1;
-            return flag;
-        }
+        else flag = -1;
+        return flag;
+    }
+        static int GetCount()
+    {
+        return Count;
+    }
+    public int GetId()
+    {
+        return id;
+    }
+    public String GetName()
+    {
+        return name;
+    }
+    public String GetJob()
+    {
+        return job;
+    }
+    public int GetSalary()
+    {
+        return salary;
+    }
+    public void SetName(String my_name)
+    {
+        this.name = my_name;
+    }
+    public void SetJob(String my_job)
+    {
+        this.job = my_job;
+    }
+    public void SetSalary(int my_salary)
+    {
+        this.salary = my_salary;
+    }
 }
