@@ -1,5 +1,5 @@
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Worker {
     private static int Count = 0;
@@ -31,7 +31,7 @@ public class Worker {
         System.out.println("input salary:");
         this.salary = scanner.nextInt();
         scanner.nextLine();
-        scanner.close();
+        //scanner.close();
     }
     public void print_worker()
     {

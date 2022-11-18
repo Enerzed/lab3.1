@@ -1,5 +1,5 @@
 
-import java.util.Scanner;
+import java.util.*;
 
 class MonthResult
 {
@@ -21,9 +21,8 @@ class MonthResult
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("input income:");
-        this.income = scanner.nextInt();
-        scanner.nextLine();
-        scanner.close();
+        this.income = Integer.parseInt(scanner.nextLine());
+        //scanner.close();
     }
     public void print_month_result()
     {

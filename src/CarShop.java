@@ -1,5 +1,5 @@
 
-import java.util.Scanner;
+import java.util.*;
 
 public class CarShop
 {
@@ -8,7 +8,7 @@ public class CarShop
     private String adress;
     private Car [] cars = new Car[128];
     private Worker [] workers = new Worker[128];
-    private MonthResult [] month_results = new MonthResult[128];
+    private MonthResult [][] month_results = new MonthResult[128][12];
     public CarShop()
     {
         Count++;
@@ -17,10 +17,11 @@ public class CarShop
         {
             this.cars[i] = new Car();
             this.workers[i] = new Worker();
-            this.month_results[i] = new MonthResult();
+            for(int j = 0; j < 12; j++)
+                this.month_results[i][j] = new MonthResult();
         }
     }
-    public CarShop(int my_id, String my_adress, Car [] my_cars, Worker [] my_workers, MonthResult [] my_month_results)
+    public CarShop(int my_id, String my_adress, Car [] my_cars, Worker [] my_workers, MonthResult [][] my_month_results)
     {
         Count++;
         this.id = Count;
@@ -29,7 +30,8 @@ public class CarShop
         {
             this.cars[i] = my_cars[i];
             this.workers[i] = my_workers[i];
-            this.month_results[i] = my_month_results[i];
+            for(int j = 0; j < 12; j++)
+                this.month_results[i][j] = my_month_results[i][j];
         }
     }
     void in_car_shop()
@@ -44,10 +46,13 @@ public class CarShop
         System.out.println("input car quantity:");
         cars_quantity = scanner.nextInt();
         scanner.nextLine();
-
         for (int i = 0;i < cars_quantity;i++)
         {
+            try{
                 this.cars[i].in_car();
+            }catch(StringValuesException e){
+                System.err.println(e.getMessage());
+            }
         }
         int workers_quantity = 0;
 
@@ -58,26 +63,49 @@ public class CarShop
         {
             this.workers[i].in_worker();
         }
-        int month_results_quantity = 0;
-
-        System.out.println("input month results quantity:");
-        month_results_quantity = scanner.nextInt();
+        int month_results_quantity_years = 0;
+        int month_results_quantity_months = 0;
+        System.out.println("input month results quantity years:");
+        month_results_quantity_years = scanner.nextInt();
         scanner.nextLine();
-        for (int i = 0;i < month_results_quantity;i++)
+        System.out.println("input month results quantity months:");
+        month_results_quantity_months = scanner.nextInt();
+        scanner.nextLine();
+        for (int i = 0;i < month_results_quantity_years+1;i++)
         {
-            this.month_results[i].in_month_result();
+            if(i!=month_results_quantity_years)
+            {
+                for(int j = 0;j < 12;j++)
+                this.month_results[i][j].in_month_result();
+            }
+            else
+            {
+            for(int j = 0;j < month_results_quantity_months;j++)
+                this.month_results[i][j].in_month_result();
+            }
         }
-        scanner.close();
+        //scanner.close();
     }
-    void print_car_shop_all_info(int quantity_of_cars, int quantity_of_workers, int quantity_of_months)
+    void print_car_shop_all_info(int quantity_of_cars, int quantity_of_workers, int quantity_of_years, int quantity_of_months)
     {
         System.out.printf("id = %d\nadress = %s\n",id, adress);
         for (int i = 0;i < quantity_of_cars;i++)
             cars[i].print_car();
         for (int i = 0;i < quantity_of_workers;i++)
             workers[i].print_worker();
-        for (int i = 0;i < quantity_of_months;i++)
-            month_results[i].print_month_result();
+        for (int i = 0;i < quantity_of_years+1;i++)
+        {
+            if(i!=quantity_of_years)
+            {
+            for(int j = 0;j < 12; j++)
+                month_results[i][j].print_month_result();
+            }
+            else
+            {
+            for(int j = 0;j < quantity_of_months;j++)
+                month_results[i][j].print_month_result();
+            }
+        }
     }
     public static int GetCount()
     {
@@ -99,7 +127,7 @@ public class CarShop
     {
         return this.workers;
     }
-    public MonthResult[] GetMonthResults()
+    public MonthResult[][] GetMonthResults()
     {
         return this.month_results;
     }

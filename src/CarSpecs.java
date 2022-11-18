@@ -1,5 +1,5 @@
 
-import java.util.Scanner;
+import java.util.*;
 
 public class CarSpecs
 {
@@ -42,19 +42,34 @@ public class CarSpecs
         else flag = -1;
         return flag;
     }
-    public void in_car_specs()
+    public void in_car_specs() throws IntegerValuesException
     {
         Scanner scanner = new Scanner(System.in);
+        try{
         System.out.println("input speed:");
-        this.speed = scanner.nextInt();
-        scanner.nextLine();
+        this.speed = Integer.parseInt(scanner.nextLine());
+        }catch(Exception e){
+            System.err.println("Not an int type or incorrect");
+        }
+        if(this.speed <= 0)
+            throw new IntegerValuesException("Value of speed must be > 0");
+        try{
         System.out.println("input weight:");
-        this.weight = scanner.nextInt();
-        scanner.nextLine();
+        this.weight = Integer.parseInt(scanner.nextLine());
+        }catch(Exception e){
+            System.err.println("Not an int type or incorrect value");
+        }
+        if(this.weight <= 0)
+            throw new IntegerValuesException("Value of weight must be > 0");
+        try{
         System.out.println("input power of engine:");
-        this.power_of_engine = scanner.nextInt();
-        scanner.nextLine();
-        scanner.close();
+        this.power_of_engine = Integer.parseInt(scanner.nextLine());
+        }catch(Exception e){
+            System.err.println("Not an int type or incorrect value");
+        }
+        if(this.power_of_engine <= 0)
+            throw new IntegerValuesException("Value of power of engine must be > 0");
+        //scanner.close();
     }
     public void print_specs()
     {
