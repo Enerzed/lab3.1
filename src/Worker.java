@@ -1,12 +1,12 @@
 
 import java.util.*;
 
-public class Worker {
-    private static int Count = 0;
-    private int id;
-    private String name;
-    private String job;
-    private int salary;
+public class Worker implements Interface, Cloneable {
+    protected static int Count = 0;
+    protected int id;
+    protected String name;
+    protected String job;
+    protected int salary;
     public Worker()
     {
 
@@ -18,7 +18,23 @@ public class Worker {
         this.job = my_job;
         this.salary = my_salary;
     }
-    public void in_worker()
+    //глубокое клонирование(создание еще одного объекта)
+    public Object clone() throws CloneNotSupportedException 
+    {
+        Worker clone = (Worker) super.clone();
+        clone.id = id;
+        clone.name = name;
+        clone.job = job;
+        clone.salary = salary;
+        return clone;
+    }
+    //мелкое клонирование(копируется только ссылка)
+    public Object clone() throws CloneNotSupportedException
+    {
+        Worker clone = (Worker) super.clone(); 
+        return clone;  
+   }
+    public void In()
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("input id:");
@@ -33,7 +49,7 @@ public class Worker {
         scanner.nextLine();
         //scanner.close();
     }
-    public void print_worker()
+    public void Print()
     {
         System.out.printf("id = %d\nname = %s\njob = %s\nsalary = %d\n",id, name, job, salary);
     }

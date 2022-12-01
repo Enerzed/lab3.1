@@ -49,7 +49,7 @@ public class CarShop
         for (int i = 0;i < cars_quantity;i++)
         {
             try{
-                this.cars[i].in_car();
+                this.cars[i].In();
             }catch(StringValuesException e){
                 System.err.println(e.getMessage());
             }
@@ -61,7 +61,7 @@ public class CarShop
         scanner.nextLine();
         for (int i = 0;i < workers_quantity;i++)
         {
-            this.workers[i].in_worker();
+            this.workers[i].In();
         }
         int month_results_quantity_years = 0;
         int month_results_quantity_months = 0;
@@ -76,12 +76,12 @@ public class CarShop
             if(i!=month_results_quantity_years)
             {
                 for(int j = 0;j < 12;j++)
-                this.month_results[i][j].in_month_result();
+                this.month_results[i][j].In();
             }
             else
             {
             for(int j = 0;j < month_results_quantity_months;j++)
-                this.month_results[i][j].in_month_result();
+                this.month_results[i][j].In();
             }
         }
         //scanner.close();
@@ -90,20 +90,20 @@ public class CarShop
     {
         System.out.printf("id = %d\nadress = %s\n",id, adress);
         for (int i = 0;i < quantity_of_cars;i++)
-            cars[i].print_car();
+            cars[i].Print();
         for (int i = 0;i < quantity_of_workers;i++)
-            workers[i].print_worker();
+            workers[i].Print();
         for (int i = 0;i < quantity_of_years+1;i++)
         {
             if(i!=quantity_of_years)
             {
             for(int j = 0;j < 12; j++)
-                month_results[i][j].print_month_result();
+                month_results[i][j].Print();
             }
             else
             {
             for(int j = 0;j < quantity_of_months;j++)
-                month_results[i][j].print_month_result();
+                month_results[i][j].Print();
             }
         }
     }
