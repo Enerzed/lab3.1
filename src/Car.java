@@ -2,7 +2,7 @@
 import java.io.IOException;
 import java.util.*;
 
-public class Car
+public class Car extends Vehicle
 {
     private static int Count = 0;
     private CarSpecs specs;
@@ -25,7 +25,7 @@ public class Car
         Count++;
         this.id = Count;
     }
-    public void in_car() throws StringValuesException
+    public void In() throws StringValuesException
     {
         String SOLD = "SOLD";
         String IN_STOCK = "IN STOCK";
@@ -46,7 +46,7 @@ public class Car
         }
         //scanner.close();
     }
-    public void print_car()
+    public void Print()
     {
         System.out.printf("id = %d\nname = %s\nstatus = %s\n",id, name, status);
         this.specs.print_specs();

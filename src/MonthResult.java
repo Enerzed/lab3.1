@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-class MonthResult
+class MonthResult implements Interface
 {
     private static int Count = 0;
     private int id;
@@ -17,14 +17,14 @@ class MonthResult
         Count++;
         this.id = Count;
     }
-    public void in_month_result()
+    public void In()
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("input income:");
         this.income = Integer.parseInt(scanner.nextLine());
         //scanner.close();
     }
-    public void print_month_result()
+    public void Print()
     {
         System.out.printf("id = %d\nincome = %d\n", this.id,this.income);
     }
