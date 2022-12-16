@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class Worker implements Interface, Cloneable {
+public class Worker implements Interface, Cloneable, Comparable, Comparator {
     protected static int Count = 0;
     protected int id;
     protected String name;
@@ -18,8 +18,21 @@ public class Worker implements Interface, Cloneable {
         this.job = my_job;
         this.salary = my_salary;
     }
+    @Override
+    public int compareTo(Object o) //сравнение зарплат
+    {
+        Worker f = (Worker) o;
+        return this.salary - f.salary;
+    }
+    @Override
+    public int compare(Object a, Object b)
+    {
+        Worker f = (Worker) a;
+        Worker u = (Worker) b;
+        return f.GetName().compareTo(u.GetName());
+    }
     //глубокое клонирование(создание еще одного объекта)
-    public Object clone() throws CloneNotSupportedException 
+    /*public Object clone() throws CloneNotSupportedException 
     {
         Worker clone = (Worker) super.clone();
         clone.id = id;
@@ -27,7 +40,7 @@ public class Worker implements Interface, Cloneable {
         clone.job = job;
         clone.salary = salary;
         return clone;
-    }
+    }*/
     //мелкое клонирование(копируется только ссылка)
     public Object clone() throws CloneNotSupportedException
     {

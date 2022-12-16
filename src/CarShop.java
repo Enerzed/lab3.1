@@ -7,7 +7,7 @@ public class CarShop
     private int id;
     private String adress;
     private Car [] cars = new Car[128];
-    private Worker [] workers = new Worker[128];
+    private List<Worker> workers = new ArrayList<>();
     private MonthResult [][] month_results = new MonthResult[128][12];
     public CarShop()
     {
@@ -16,7 +16,6 @@ public class CarShop
         for (int i = 0; i < 128; i++)
         {
             this.cars[i] = new Car();
-            this.workers[i] = new Worker();
             for(int j = 0; j < 12; j++)
                 this.month_results[i][j] = new MonthResult();
         }
@@ -29,12 +28,29 @@ public class CarShop
         for (int i = 0; i < 128; i++)
         {
             this.cars[i] = my_cars[i];
-            this.workers[i] = my_workers[i];
+            workers.add(my_workers[i]);
             for(int j = 0; j < 12; j++)
                 this.month_results[i][j] = my_month_results[i][j];
         }
     }
-    void in_car_shop()
+    public void SortBySalaryUp()
+    {
+        Collections.sort(workers);
+    }
+    public void SortByNameUp()
+    {
+        Collections.sort(workers, (a,b) -> {
+            return a.GetName().compareTo(b.GetName());
+        });
+    }
+    public void IsThereTheElement(Worker ToFind)
+    {
+        if(workers.contains(ToFind))
+            System.out.println("Element in the collection was found");
+        else
+            System.out.println("No such element");
+    }
+    public void in_car_shop()
     {
         Scanner scanner = new Scanner(System.in);
 
@@ -61,7 +77,9 @@ public class CarShop
         scanner.nextLine();
         for (int i = 0;i < workers_quantity;i++)
         {
-            this.workers[i].In();
+            Worker temp = new Worker();
+            temp.In();
+            workers.add(temp);
         }
         int month_results_quantity_years = 0;
         int month_results_quantity_months = 0;
@@ -91,8 +109,7 @@ public class CarShop
         System.out.printf("id = %d\nadress = %s\n",id, adress);
         for (int i = 0;i < quantity_of_cars;i++)
             cars[i].Print();
-        for (int i = 0;i < quantity_of_workers;i++)
-            workers[i].Print();
+        System.out.println(workers);
         for (int i = 0;i < quantity_of_years+1;i++)
         {
             if(i!=quantity_of_years)
@@ -123,9 +140,9 @@ public class CarShop
     {
         return this.cars;
     }
-    public Worker[] GetWorkers()
+    public List<Worker> GetWorkers()
     {
-        return this.workers;
+        return workers;
     }
     public MonthResult[][] GetMonthResults()
     {
